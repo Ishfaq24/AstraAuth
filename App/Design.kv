@@ -1,1 +1,188 @@
+#:kivy 2.0.0
+
+<LoginScreen>:
+    GridLayout:
+        cols: 1
+        padding: [40, 80, 40, 40]  # Padding for better structure
+        spacing: 20
+
+        Label:
+            text: "User Login"
+            font_size: 32
+            bold: True
+            size_hint_y: None
+            height: 60
+            color: 0.2, 0.5, 0.7, 1  # A soft blue shade
+
+        TextInput:
+            id: Username
+            hint_text: "Username"
+            size_hint_y: None
+            height: 50
+            font_size: 18
+            multiline: False
+            padding: [10, 10]
+
+        TextInput:
+            id: password
+            hint_text: "Password"
+            password: True
+            size_hint_y: None
+            height: 50
+            font_size: 18
+            multiline: False
+            padding: [10, 10]
+
+        Button:
+            text: "Login"
+            size_hint_y: None
+            height: 50
+            font_size: 18
+            background_color: 0.2, 0.6, 0.4, 1  # Green shade
+            on_press: root.login(root.ids.Username.text, root.ids.password.text)
+
+        GridLayout:
+            cols: 2
+            spacing: 15
+            size_hint_y: None
+            height: 50
+
+            Button:
+                text: "Forgot Password?"
+                font_size: 14
+                background_color: 0.7, 0.7, 0.7, 1  # Light gray
+
+            Button:
+                text: "Sign Up"
+                font_size: 14
+                background_color: 0.2, 0.5, 0.8, 1  # Blue shade
+                on_press: root.sign_up()
+
+        Label:
+            id: login_wrong
+            text: ""
+            color: 1, 0, 0, 1  # Red for error messages
+            font_size: 16
+            size_hint_y: None
+            height: 40
+
+<SignUpScreen>:
+    GridLayout:
+        cols: 1
+        padding: [40, 80, 40, 40]
+        spacing: 20
+
+        Label:
+            text: "Sign Up for Space Journey"
+            font_size: 28
+            bold: True
+            size_hint_y: None
+            height: 60
+            color: 0.3, 0.6, 0.9, 1
+
+        TextInput:
+            id: Username
+            hint_text: "Username"
+            size_hint_y: None
+            height: 50
+            font_size: 18
+            padding: [10, 10]
+
+        TextInput:
+            id: password
+            hint_text: "Password"
+            password: True
+            size_hint_y: None
+            height: 50
+            font_size: 18
+            padding: [10, 10]
+
+        Button:
+            text: "Submit"
+            size_hint_y: None
+            height: 50
+            font_size: 18
+            background_color: 0.2, 0.6, 0.4, 1
+            on_press: root.add_user(root.ids.Username.text, root.ids.password.text)
+
+<SignUpScreenSuccess>:
+    GridLayout:
+        cols: 1
+        padding: [40, 80, 40, 40]
+        spacing: 20
+
+        Label:
+            text: "Sign Up Successful!"
+            font_size: 28
+            bold: True
+            size_hint_y: None
+            height: 60
+            color: 0.2, 0.8, 0.4, 1
+
+        Button:
+            text: "Go to Login Page"
+            size_hint_y: None
+            height: 50
+            font_size: 18
+            background_color: 0.2, 0.5, 0.8, 1
+            on_press: root.go_to_login()
+
+<LoginScreenSuccess>:
+    GridLayout:
+        cols: 1
+        padding: [40, 80, 40, 40]
+        spacing: 20
+
+        Label:
+            text: "Welcome Back!"
+            font_size: 28
+            bold: True
+            size_hint_y: None
+            height: 60
+            color: 0.3, 0.6, 0.9, 1
+
+        Button:
+            text: "Logout"
+            size_hint_y: None
+            height: 50
+            font_size: 18
+            background_color: 0.8, 0.2, 0.2, 1
+            on_press: root.log_out()
+
+        Label:
+            text: "How do you feel?"
+            font_size: 18
+            size_hint_y: None
+            height: 40
+
+        TextInput:
+            id: feeling
+            hint_text: "Try typing: happy, sad, etc."
+            size_hint_y: None
+            height: 50
+            font_size: 18
+
+        Button:
+            text: "Enlighten Me"
+            size_hint_y: None
+            height: 50
+            font_size: 18
+            background_color: 0.2, 0.6, 0.4, 1
+            on_press: root.get_quote(root.ids.feeling.text)
+
+        Label:
+            text: ""
+            id: quote_output
+            font_size: 16
+            color: 0, 0, 0, 1
+
+<RootWidget>:
+    LoginScreen:
+        name: "login_screen"
+    SignUpScreen:
+        name: "sign_up_screen"
+    SignUpScreenSuccess:
+        name: "sign_up_screen_success"
+    LoginScreenSuccess:
+        name: "login_screen_success"
 
